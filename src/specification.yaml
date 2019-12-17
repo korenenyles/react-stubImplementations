@@ -11,3 +11,60 @@ servers:
       domain:
         default: localhost:3000
         description: Domain
+paths:
+  /api/images:
+    get:
+      summary: Get a list of images
+      tags:
+        - Images
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                properties:
+                  imageURIs:
+                    type: array
+                    items:
+                      type: string
+                  statusCode:
+                    type: integer
+                required:
+                  - imageURIs
+                  - statusCode
+    post:
+      summary: Upload an image to share
+      tags:
+        - Images
+      requestBody:
+        description: Picture data that is one of gif, jpeg, or png
+        required: true
+        content:
+          multiport/form-data:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                image:
+                  type: string
+                  format: binary
+              required:
+                - image
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  imageURI:
+                    type: string
+                  statusCode:
+                    type: integer
+                required:
+                  - imageURI
+                  - statusCode
