@@ -12,7 +12,7 @@ servers:
         default: localhost:3000
         description: Domain
 paths:
-  /api/images:
+  /images:
     get:
       summary: Get a list of images
       tags:
