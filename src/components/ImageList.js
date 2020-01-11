@@ -1,17 +1,18 @@
 import React from "react";
 import { getImages } from "../clientApi";
-
 class ImageList extends React.Component {
   state = {
-    imagesURI: []
+    images: []
   };
-
   componentDidMount() {
     getImages().then(getImagesResponse => {
-      this.setState({ images: getImagesResponse.imageURI });
+      // debugger;
+      console.log(getImagesResponse);
+      this.setState((state, props) => {
+        return { images: getImagesResponse.imageURI };
+      });
     });
   }
-
   render() {
     return (
       <>
@@ -22,5 +23,4 @@ class ImageList extends React.Component {
     );
   }
 }
-
 export default ImageList;
